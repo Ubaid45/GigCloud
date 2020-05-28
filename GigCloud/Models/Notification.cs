@@ -18,7 +18,7 @@ namespace GigCloud.Models
         {
         }
 
-        private Notification(NotificationType type, Gig gig)
+        public Notification(NotificationType type, Gig gig)
         {
             Type = type;
             Gig = gig ?? throw new ArgumentNullException("gig");

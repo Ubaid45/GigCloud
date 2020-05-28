@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace GigCloud.Models
 {
     public class Gig
     {
+        public Gig()
+        {
+            Attendances = new Collection<Attendance>();
+        }
         public int Id { get; set; }
 
         public ApplicationUser Artist { get; set; }
@@ -23,5 +29,7 @@ namespace GigCloud.Models
 
         [Required]
         public byte GenreId { get; set; }
+
+        public ICollection<Attendance> Attendances { get; private set; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using GigCloud.Models;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Mvc.Html;
 
 namespace GigCloud.Controllers.Api
 {
@@ -19,7 +21,9 @@ namespace GigCloud.Controllers.Api
         public IHttpActionResult Cancel(int id)
         {
             var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs.Single(g => g.Id == id && g.ArtistId == userId);
+            var gig = _context.Gigs
+                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .Single(g => g.Id == id && g.ArtistId == userId);
 
             if (gig.IsCanceled)
                 return NotFound();
@@ -29,12 +33,7 @@ namespace GigCloud.Controllers.Api
 
             var notification = new Notification(NotificationType.GigCanceled, gig);
 
-            var attendees = _context.Attendances
-                .Where(a => a.GigId == gig.Id)
-                .Select(a => a.Attendee)
-                .ToList();
-
-            foreach (var attendee in attendees)
+            foreach (var attendee in gig.Attendances.Select(a => a.Attendee))
             {
                 attendee.Notify(notification);
             }
