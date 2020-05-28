@@ -187,6 +187,10 @@
     <Compile Include="Migrations\202005281948383_AddIsCanceledToGig.Designer.cs">
       <DependentUpon>202005281948383_AddIsCanceledToGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005282041025_AddNotification.cs" />
+    <Compile Include="Migrations\202005282041025_AddNotification.Designer.cs">
+      <DependentUpon>202005282041025_AddNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\UserNotification.cs" />
     <Compile Include="ViewModels\GigsViewModel.cs" />
@@ -344,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005281948383_AddIsCanceledToGig.resx">
       <DependentUpon>202005281948383_AddIsCanceledToGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005282041025_AddNotification.resx">
+      <DependentUpon>202005282041025_AddNotification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
