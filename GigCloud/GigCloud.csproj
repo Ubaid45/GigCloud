@@ -182,6 +182,10 @@
     <Compile Include="Controllers\FolloweesController.cs" />
     <Compile Include="Controllers\FollowingsController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
+    <Compile Include="Migrations\202005281948383_AddIsCanceledToGig.cs" />
+    <Compile Include="Migrations\202005281948383_AddIsCanceledToGig.Designer.cs">
+      <DependentUpon>202005281948383_AddIsCanceledToGig.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\GigsViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -332,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005281407390_AddFollowing.resx">
       <DependentUpon>202005281407390_AddFollowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005281948383_AddIsCanceledToGig.resx">
+      <DependentUpon>202005281948383_AddIsCanceledToGig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
