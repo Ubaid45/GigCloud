@@ -1,10 +1,10 @@
-﻿using GigCloud.Models;
-using Microsoft.AspNet.Identity;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
 using GigCloud.Dtos;
+using GigCloud.Models;
+using Microsoft.AspNet.Identity;
 
-namespace GigCloud.Controllers
+namespace GigCloud.Controllers.Api
 {
     [Authorize]
     public class AttendancesController : ApiController

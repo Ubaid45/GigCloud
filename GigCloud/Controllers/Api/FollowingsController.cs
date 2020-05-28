@@ -1,15 +1,15 @@
-﻿using GigCloud.Dtos;
+﻿using System.Linq;
+using System.Web.Http;
+using GigCloud.Dtos;
 using GigCloud.Models;
 using Microsoft.AspNet.Identity;
-using System.Linq;
-using System.Web.Http;
 
-namespace GigCloud.Controllers
+namespace GigCloud.Controllers.Api
 {
     [Authorize]
     public class FollowingsController : ApiController
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public FollowingsController()
         {
