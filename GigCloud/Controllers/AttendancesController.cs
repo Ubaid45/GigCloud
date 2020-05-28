@@ -1,5 +1,6 @@
 ﻿using GigCloud.Models;
 using Microsoft.AspNet.Identity;
+using System.Linq;
 using System.Web.Http;
 
 namespace GigCloud.Controllers
@@ -18,6 +19,9 @@ namespace GigCloud.Controllers
         public IHttpActionResult Attend([FromBody] int gigId)
         {
             var userId = User.Identity.GetUserId();
+
+            if (_context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == gigId))
+                return BadRequest("The attendance already exists.");
 
             var attendance = new Attendance
             {
