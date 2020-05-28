@@ -24,5 +24,7 @@ namespace GigCloud.Controllers
 
             return View(viewModel);
         }
+
+
     }
 }
