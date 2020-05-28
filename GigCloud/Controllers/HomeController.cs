@@ -31,7 +31,7 @@ namespace GigCloud.Controllers
             };
 
 
-            return View(viewModel);
+            return View("Gigs", viewModel);
         }
         public ActionResult About()
         {

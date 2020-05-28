@@ -1,7 +1,7 @@
-﻿using System.Data.Entity;
-using GigCloud.Models;
+﻿using GigCloud.Models;
 using GigCloud.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -34,7 +34,7 @@ namespace GigCloud.Controllers
                 Heading = "Gigs I'm Attending"
             };
 
-            return View( viewModel);
+            return View("Gigs", viewModel);
         }
 
         [Authorize]
