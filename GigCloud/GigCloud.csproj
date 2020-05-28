@@ -187,6 +187,8 @@
     <Compile Include="Migrations\202005281948383_AddIsCanceledToGig.Designer.cs">
       <DependentUpon>202005281948383_AddIsCanceledToGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="ViewModels\GigsViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -251,6 +253,7 @@
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Compile Include="Models\NotificationType.cs" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
