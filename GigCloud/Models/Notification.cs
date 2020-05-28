@@ -5,13 +5,25 @@ namespace GigCloud.Models
 {
     public class Notification
     {
-        public int Id { get; set; }
-        public DateTime DateTime { get; set; }
-        public NotificationType Type { get; set; }
-        public DateTime? OriginalDateTime { get; set; }
-        public string OriginalVenue { get; set; }
+        public int Id { get; private set; }
+        public DateTime DateTime { get; private set; }
+        public NotificationType Type { get; private set; }
+        public DateTime? OriginalDateTime { get; private set; }
+        public string OriginalVenue { get; private set; }
 
         [Required]
-        public Gig Gig { get; set; }
+        public Gig Gig { get; private set; }
+
+        protected Notification()
+        {
+        }
+
+        private Notification(NotificationType type, Gig gig)
+        {
+            Type = type;
+            Gig = gig ?? throw new ArgumentNullException("gig");
+            DateTime = DateTime.Now;
+        }
+
     }
 }
