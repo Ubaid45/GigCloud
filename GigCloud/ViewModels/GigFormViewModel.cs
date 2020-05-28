@@ -1,7 +1,10 @@
-﻿using GigCloud.Models;
+﻿using GigCloud.Controllers;
+using GigCloud.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using System.Web.Mvc;
 
 namespace GigCloud.ViewModels
 {
@@ -27,11 +30,11 @@ namespace GigCloud.ViewModels
 
         public string Heading { get; set; }
 
-
+        public string Action => (Id != 0) ? "Update" : "Create";
 
         public DateTime GetDateTime()
         {
-            return DateTime.Parse(string.Format("{0} {1}", Date, Time));
+            return DateTime.Parse($"{Date} {Time}");
         }
     }
 }
