@@ -7,6 +7,7 @@ namespace GigCloud.ViewModels
 {
     public class GigFormViewModel
     {
+        public int Id { get; set; }
 
         [Required]
         public string Venue { get; set; }
@@ -24,9 +25,13 @@ namespace GigCloud.ViewModels
 
         public IEnumerable<Genre> Genres { get; set; }
 
+        public string Heading { get; set; }
+
+
+
         public DateTime GetDateTime()
         {
-            return DateTime.Parse($"{Date} {Time}");
+            return DateTime.Parse(string.Format("{0} {1}", Date, Time));
         }
     }
 }
