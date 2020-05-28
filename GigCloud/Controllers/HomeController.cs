@@ -1,18 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GigCloud.Models;
+using System;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GigCloud.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private readonly ApplicationDbContext _context;
+
+        public HomeController()
         {
-            return View();
+            _context = new ApplicationDbContext();
         }
 
+        public ActionResult Index()
+        {
+            var upcomingGigs = _context.Gigs
+                .Include(g => g.Artist)
+                .Where(g => g.DateTime > DateTime.Now);
+
+            return View(upcomingGigs);
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
