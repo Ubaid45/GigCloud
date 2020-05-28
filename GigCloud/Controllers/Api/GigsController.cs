@@ -40,13 +40,9 @@ namespace GigCloud.Controllers.Api
                 .Select(a => a.Attendee)
                 .ToList();
 
-            foreach (var userNotification in attendees.Select(attendee => new UserNotification
+            foreach (var attendee in attendees)
             {
-                User = attendee,
-                Notification = notification
-            }))
-            {
-                _context.UserNotifications.Add(userNotification);
+                attendee.Notify(notification);
             }
 
             _context.SaveChanges();
