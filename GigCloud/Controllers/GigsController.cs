@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using GigCloud.Models;
+﻿using GigCloud.Models;
 using GigCloud.ViewModels;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace GigCloud.Controllers
 {
@@ -17,6 +14,7 @@ namespace GigCloud.Controllers
             _context = new ApplicationDbContext();
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new GigFormViewModel
