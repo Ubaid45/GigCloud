@@ -1,10 +1,10 @@
-﻿using GigCloud.Controllers;
-using GigCloud.Models;
+﻿using GigCloud.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using GigCloud.Controllers;
 
 namespace GigCloud.ViewModels
 {
@@ -30,7 +30,20 @@ namespace GigCloud.ViewModels
 
         public string Heading { get; set; }
 
-        public string Action => (Id != 0) ? "Update" : "Create";
+        public string Action
+        {
+            get
+            {
+                Expression<Func<GigsController, ActionResult>> update =
+                    c => c.Update(this);
+
+                Expression<Func<GigsController, ActionResult>> create =
+                    c => c.Create(this);
+
+                var action = Id != 0 ? update : create;
+                return (action.Body as MethodCallExpression)?.Method.Name;
+            }
+        }
 
         public DateTime GetDateTime()
         {
