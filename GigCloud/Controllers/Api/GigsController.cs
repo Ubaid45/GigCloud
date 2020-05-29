@@ -3,7 +3,6 @@ using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
-using System.Web.Mvc.Html;
 
 namespace GigCloud.Controllers.Api
 {
@@ -28,15 +27,7 @@ namespace GigCloud.Controllers.Api
             if (gig.IsCanceled)
                 return NotFound();
 
-            gig.IsCanceled = true;
-
-
-            var notification = new Notification(NotificationType.GigCanceled, gig);
-
-            foreach (var attendee in gig.Attendances.Select(a => a.Attendee))
-            {
-                attendee.Notify(notification);
-            }
+            gig.Cancel();
 
             _context.SaveChanges();
 
