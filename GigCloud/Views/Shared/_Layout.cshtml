@@ -51,7 +51,12 @@
                     .removeClass("hide")
                     .addClass("animated bounceInDown");
 
-              
+                $(".notifications").popover({
+                    html: true,
+                    title: "Notifications",
+                    content: "Hello",
+                    placement: "bottom"
+                });
 
             });
         });
