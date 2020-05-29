@@ -45,5 +45,23 @@ namespace GigCloud.Models
             }
 
         }
+
+        public void Modify(DateTime dateTime, string venue, byte genre)
+        {
+            var notification = new Notification(NotificationType.GigUpdated, this)
+            {
+                OriginalDateTime = DateTime,
+                OriginalVenue = Venue
+            };
+
+            Venue = venue;
+            DateTime = dateTime;
+            GenreId = genre;
+
+            foreach (var attendee in Attendances.Select(a => a.Attendee))
+            {
+                attendee.Notify(notification);
+            }
+        }
     }
 }
