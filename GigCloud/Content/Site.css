@@ -127,7 +127,13 @@ h6,
     height: 44px;
     -ms-border-radius: 9px;
     border-radius: 9px;
+    transition: none;
+    -webkit-transition: none;
 }
+
+    .form-control:focus {
+        box-shadow: none;
+    }
 
 .btn {
     /*font-size: 17px;
@@ -213,4 +219,11 @@ h6,
     .popover-notifications ul.notifications .highlight {
         font-weight: bold;
     }
-/*# sourceMappingURL=site.css.map */
+
+#searchGigs {
+    width: 400px;
+}
+
+    #searchGigs input {
+        max-width: none;
+    }
