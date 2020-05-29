@@ -37,7 +37,7 @@ namespace GigCloud.Models
         {
             IsCanceled = true;
 
-            var notification = new Notification(NotificationType.GigCanceled, this);
+            var notification = Notification.GigCanceled(this);
 
             foreach (var attendee in Attendances.Select(a => a.Attendee))
             {
@@ -48,11 +48,7 @@ namespace GigCloud.Models
 
         public void Modify(DateTime dateTime, string venue, byte genre)
         {
-            var notification = new Notification(NotificationType.GigUpdated, this)
-            {
-                OriginalDateTime = DateTime,
-                OriginalVenue = Venue
-            };
+            var notification = Notification.GigUpdated(this, DateTime, venue);
 
             Venue = venue;
             DateTime = dateTime;
