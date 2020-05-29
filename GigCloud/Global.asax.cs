@@ -9,6 +9,7 @@ namespace GigCloud
     {
         protected void Application_Start()
         {
+            AutomapperWebConfiguration.Configure();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
