@@ -1,17 +1,17 @@
 ﻿var GigsController = function() {
 
     var init = function() {
-        $(".js-toggle-attendance").click(function (e) {
+        $(".js-toggle-attendance").click(function(e) {
             var button = $(e.target);
             if (button.hasClass("btn-default")) {
                 $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
-                    .done(function () {
+                    .done(function() {
                         button
                             .removeClass("btn-default")
                             .addClass("btn-info")
                             .text("Going");
                     })
-                    .fail(function () {
+                    .fail(function() {
                         alert("Something failed!");
                     });
             } else {
@@ -19,36 +19,32 @@
                         url: "/api/attendances/" + button.attr("data-gig-id"),
                         method: "DELETE"
                     })
-                    .done(function () {
+                    .done(function() {
                         button
                             .removeClass("btn-info")
                             .addClass("btn-default")
                             .text("Going?");
                     })
-                    .fail(function () {
+                    .fail(function() {
                         alert("Something failed");
                     });
             }
 
         });
 
-        $(".js-toggle-follow").click(function (e) {
+        $(".js-toggle-follow").click(function(e) {
             var button = $(e.target);
             $.post("/api/followings", { followeeId: button.attr("data-user-id") })
-                .done(function () {
+                .done(function() {
                     button.text("Following");
                 })
-                .fail(function () {
+                .fail(function() {
                     alert("Something failed");
                 });
         });
     }
 
     return {
-        init : init
+        init: init
     }
-}
-
-function initGigs() {
- 
-}
+}();
