@@ -9,9 +9,9 @@ namespace GigCloud
         {
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/scripts/app/services/attendanceService.js",
-                //"~/scripts/app/services/followingService.js",
+                "~/scripts/app/services/followingService.js",
                 "~/scripts/app/controllers/gigsController.js",
-                //"~/scripts/app/controllers/gigDetailsController.js",
+                "~/scripts/app/controllers/gigDetailsController.js",
                 "~/scripts/app/app.js"
             ));
 

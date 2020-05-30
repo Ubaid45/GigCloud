@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Web.Http;
-using GigCloud.Dtos;
+﻿using GigCloud.Dtos;
 using GigCloud.Models;
 using Microsoft.AspNet.Identity;
+using System.Linq;
+using System.Web.Http;
 
 namespace GigCloud.Controllers.Api
 {
@@ -16,12 +16,11 @@ namespace GigCloud.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        [HttpPost]
         public IHttpActionResult Follow(FollowingDto dto)
         {
             var userId = User.Identity.GetUserId();
 
-            if (_context.Followings.Any(f => f.FolloweeId == userId && f.FolloweeId == dto.FolloweeId))
+            if (_context.Followings.Any(f => f.FollowerId == userId && f.FolloweeId == dto.FolloweeId))
                 return BadRequest("Following already exists.");
 
             var following = new Following
@@ -33,6 +32,23 @@ namespace GigCloud.Controllers.Api
             _context.SaveChanges();
 
             return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult Unfollow(string id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var following = _context.Followings
+                .SingleOrDefault(f => f.FollowerId == userId && f.FolloweeId == id);
+
+            if (following == null)
+                return NotFound();
+
+            _context.Followings.Remove(following);
+            _context.SaveChanges();
+
+            return Ok(id);
         }
     }
 }
