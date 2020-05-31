@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using GigCloud.Persistence;
+using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
-using GigCloud.Core.Models;
-using GigCloud.Persistence;
 
 namespace GigCloud.Controllers.Api
 {

@@ -1,10 +1,9 @@
-﻿using GigCloud.Persistence;
+﻿using GigCloud.Core;
+using GigCloud.Core.Models;
+using GigCloud.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
-using GigCloud.Core;
-using GigCloud.Core.Models;
-using GigCloud.Core.ViewModels;
 
 namespace GigCloud.Controllers
 {
@@ -21,6 +20,7 @@ namespace GigCloud.Controllers
         {
             var gig = _unitOfWork.Gigs.GetGig(id);
 
+            
             if (gig == null)
                 return HttpNotFound();
 
