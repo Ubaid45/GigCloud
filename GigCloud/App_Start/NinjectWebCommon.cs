@@ -1,22 +1,25 @@
+using Ninject.Web.Common.WebHost;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(GigCloud.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(GigCloud.App_Start.NinjectWebCommon), "Stop")]
 
 namespace GigCloud.App_Start
 {
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-    using Ninject;
-    using Ninject.Extensions.Conventions;
-    using Ninject.Web.Common;
-    using Ninject.Web.Common.WebHost;
     using System;
     using System.Web;
+
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
+    using Ninject;
+    using Ninject.Web.Common;
+    using Ninject.Extensions.Conventions;
 
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
-        /// Starts the application.
+        /// Starts the application
         /// </summary>
         public static void Start()
         {
@@ -53,7 +56,6 @@ namespace GigCloud.App_Start
                         .SelectAllClasses()
                         .BindDefaultInterface();
                 });
-
                 return kernel;
             }
             catch
