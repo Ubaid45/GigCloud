@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
-using GigCloud.Dtos;
-using GigCloud.Models;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using GigCloud.Core.Dtos;
+using GigCloud.Core.Models;
+using GigCloud.Persistence;
 
 namespace GigCloud.Controllers.Api
 {

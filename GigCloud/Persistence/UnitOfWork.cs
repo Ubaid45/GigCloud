@@ -1,5 +1,7 @@
-﻿using GigCloud.Models;
-using GigCloud.Repositories;
+﻿using GigCloud.Core;
+using GigCloud.Core.IRepositories;
+using GigCloud.Core.Models;
+using GigCloud.Persistence.Repositories;
 
 namespace GigCloud.Persistence
 {

@@ -1,11 +1,12 @@
-﻿using GigCloud.Models;
-using GigCloud.Repositories;
-using GigCloud.ViewModels;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using GigCloud.Core.Models;
+using GigCloud.Core.ViewModels;
+using GigCloud.Persistence;
+using GigCloud.Persistence.Repositories;
 
 namespace GigCloud.Controllers
 {

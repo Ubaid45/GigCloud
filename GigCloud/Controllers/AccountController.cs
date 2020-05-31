@@ -1,12 +1,12 @@
-﻿using GigCloud.Models;
-using GigCloud.ViewModels;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using GigCloud.Core.Models;
+using GigCloud.Core.ViewModels;
 
 namespace GigCloud.Controllers
 {

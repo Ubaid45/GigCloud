@@ -1,6 +1,6 @@
 using AutoMapper;
-using GigCloud.Dtos;
-using GigCloud.Models;
+using GigCloud.Core.Dtos;
+using GigCloud.Core.Models;
 
 namespace GigCloud
 {
