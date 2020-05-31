@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using GigCloud.Core.Models;
+﻿using GigCloud.Core.Models;
+using System.Collections.Generic;
 
 namespace GigCloud.Core.IRepositories
 {
@@ -7,5 +7,7 @@ namespace GigCloud.Core.IRepositories
     {
         IEnumerable<Attendance> GetFutureAttendances(string userId);
         Attendance GetAttendance(int gigId, string userId);
+        void Add(Attendance attendance);
+        void Remove(Attendance attendance);
     }
 }

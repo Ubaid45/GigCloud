@@ -1,6 +1,5 @@
 ﻿using GigCloud.Core;
 using GigCloud.Core.IRepositories;
-using GigCloud.Core.Models;
 using GigCloud.Persistence.Repositories;
 
 namespace GigCloud.Persistence
@@ -13,6 +12,9 @@ namespace GigCloud.Persistence
         public IAttendanceRepository Attendances { get; private set; }
         public IGenreRepository Genres { get; private set; }
         public IFollowingRepository Followings { get; private set; }
+        public IApplicationUserRepository Users { get; private set; }
+        public INotificationRepository Notifications { get; private set; }
+        public IUserNotificationRepository UserNotifications { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -21,6 +23,9 @@ namespace GigCloud.Persistence
             Attendances = new AttendanceRepository(context);
             Genres = new GenreRepository(context);
             Followings = new FollowingRepository(context);
+            Users = new ApplicationUserRepository(context);
+            Notifications = new NotificationRepository(context);
+            UserNotifications = new UserNotificationRepository(context);
         }
 
         public void Complete()

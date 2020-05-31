@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using GigCloud.Core.IRepositories;
+﻿using GigCloud.Core.IRepositories;
 using GigCloud.Core.Models;
+using System.Linq;
 
 namespace GigCloud.Persistence.Repositories
 {
@@ -17,6 +17,16 @@ namespace GigCloud.Persistence.Repositories
         {
             return _context.Followings
                 .SingleOrDefault(f => f.FolloweeId == followeeId && f.FollowerId == followerId);
+        }
+
+        public void Add(Following following)
+        {
+            _context.Followings.Add(following);
+        }
+
+        public void Remove(Following following)
+        {
+            _context.Followings.Remove(following);
         }
     }
 }

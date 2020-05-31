@@ -1,7 +1,7 @@
-﻿using System.Data.Entity;
-using GigCloud.Core.Models;
+﻿using GigCloud.Core.Models;
 using GigCloud.Persistence.EntityConfigurations;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace GigCloud.Persistence
 {
@@ -26,22 +26,13 @@ namespace GigCloud.Persistence
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+            modelBuilder.Configurations.Add(new AttendanceConfiguration());
+            modelBuilder.Configurations.Add(new FollowingConfiguration());
+            modelBuilder.Configurations.Add(new GenreConfiguration());
             modelBuilder.Configurations.Add(new GigConfiguration());
-
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(u => u.Followers)
-                .WithRequired(f => f.Followee)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(u => u.Followees)
-                .WithRequired(f => f.Follower)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<UserNotification>()
-                .HasRequired(n => n.User)
-                .WithMany(u => u.UserNotifications)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Configurations.Add(new NotificationConfiguration());
+            modelBuilder.Configurations.Add(new UserNotificationConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

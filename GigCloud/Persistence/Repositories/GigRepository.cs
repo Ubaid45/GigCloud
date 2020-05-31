@@ -1,9 +1,9 @@
-﻿using System;
+﻿using GigCloud.Core.IRepositories;
+using GigCloud.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using GigCloud.Core.IRepositories;
-using GigCloud.Core.Models;
 
 namespace GigCloud.Persistence.Repositories
 {
@@ -19,9 +19,9 @@ namespace GigCloud.Persistence.Repositories
         public Gig GetGig(int gigId)
         {
             return _context.Gigs
-                .Include(g => g.Artist)
-                .Include(g => g.Genre)
-                .SingleOrDefault(g => g.Id == gigId);
+                    .Include(g => g.Artist)
+                    .Include(g => g.Genre)
+                    .SingleOrDefault(g => g.Id == gigId);
         }
 
         public IEnumerable<Gig> GetUpcomingGigsByArtist(string artistId)
@@ -55,6 +55,25 @@ namespace GigCloud.Persistence.Repositories
         public void Add(Gig gig)
         {
             _context.Gigs.Add(gig);
+        }
+
+        public IEnumerable<Gig> GetUpcomingGigs(string searchTerm = null)
+        {
+            var upcomingGigs = _context.Gigs
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
+
+            if (!String.IsNullOrWhiteSpace(searchTerm))
+            {
+                upcomingGigs = upcomingGigs
+                    .Where(g =>
+                            g.Artist.Name.Contains(searchTerm) ||
+                            g.Genre.Name.Contains(searchTerm) ||
+                            g.Venue.Contains(searchTerm));
+            }
+
+            return upcomingGigs.ToList();
         }
 
     }

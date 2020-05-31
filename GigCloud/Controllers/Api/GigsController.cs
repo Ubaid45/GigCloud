@@ -1,7 +1,5 @@
-﻿using GigCloud.Persistence;
+﻿using GigCloud.Core;
 using Microsoft.AspNet.Identity;
-using System.Data.Entity;
-using System.Linq;
 using System.Web.Http;
 
 namespace GigCloud.Controllers.Api
@@ -9,27 +7,29 @@ namespace GigCloud.Controllers.Api
     [Authorize]
     public class GigsController : ApiController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GigsController()
+        public GigsController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         [HttpDelete]
         public IHttpActionResult Cancel(int id)
         {
             var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs
-                .Include(g => g.Attendances.Select(a => a.Attendee))
-                .Single(g => g.Id == id && g.ArtistId == userId);
+            var gig = _unitOfWork.Gigs.GetGigWithAttendees(id);
 
+            //TODO: Bug - if gig == null
             if (gig.IsCanceled)
                 return NotFound();
 
+            if (gig.ArtistId != userId)
+                return Unauthorized();
+
             gig.Cancel();
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
 
             return Ok();
         }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace GigCloud.Core.IRepositories
 {
-    public interface IGenreRepository
+    public interface INotificationRepository
     {
-        IEnumerable<Genre> GetGenres();
+        IEnumerable<Notification> GetNewNotificationsFor(string userId);
     }
 }

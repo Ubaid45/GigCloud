@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using GigCloud.Core.IRepositories;
+﻿using GigCloud.Core.IRepositories;
 using GigCloud.Core.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GigCloud.Persistence.Repositories
 {

@@ -20,8 +20,11 @@ namespace GigCloud.Core.Models
 
         private Notification(NotificationType type, Gig gig)
         {
+            if (gig == null)
+                throw new ArgumentNullException("gig");
+
             Type = type;
-            Gig = gig ?? throw new ArgumentNullException("gig");
+            Gig = gig;
             DateTime = DateTime.Now;
         }
 
@@ -29,19 +32,19 @@ namespace GigCloud.Core.Models
         {
             return new Notification(NotificationType.GigCreated, gig);
         }
+
         public static Notification GigUpdated(Gig newGig, DateTime originalDateTime, string originalVenue)
         {
-            return new Notification(NotificationType.GigUpdated, newGig)
-            {
-                OriginalDateTime = originalDateTime,
-                OriginalVenue = originalVenue
-            };
+            var notification = new Notification(NotificationType.GigUpdated, newGig);
+            notification.OriginalDateTime = originalDateTime;
+            notification.OriginalVenue = originalVenue;
 
+            return notification;
         }
-        public static Notification GigCanceled(Gig canceledGig)
+
+        public static Notification GigCanceled(Gig gig)
         {
-            return new Notification(NotificationType.GigCanceled, canceledGig);
+            return new Notification(NotificationType.GigCanceled, gig);
         }
-
     }
 }

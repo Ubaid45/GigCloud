@@ -1,8 +1,8 @@
-﻿using System;
+﻿using GigCloud.Core.IRepositories;
+using GigCloud.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using GigCloud.Core.IRepositories;
-using GigCloud.Core.Models;
 
 namespace GigCloud.Persistence.Repositories
 {
@@ -14,6 +14,7 @@ namespace GigCloud.Persistence.Repositories
         {
             _context = context;
         }
+
         public IEnumerable<Attendance> GetFutureAttendances(string userId)
         {
             return _context.Attendances
@@ -25,6 +26,16 @@ namespace GigCloud.Persistence.Repositories
         {
             return _context.Attendances
                 .SingleOrDefault(a => a.GigId == gigId && a.AttendeeId == userId);
+        }
+
+        public void Add(Attendance attendance)
+        {
+            _context.Attendances.Add(attendance);
+        }
+
+        public void Remove(Attendance attendance)
+        {
+            _context.Attendances.Remove(attendance);
         }
     }
 }

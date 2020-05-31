@@ -236,7 +236,17 @@
     <Compile Include="Core\Dtos\GigDto.cs" />
     <Compile Include="Core\Dtos\NotificationDto.cs" />
     <Compile Include="Core\Dtos\UserDto.cs" />
+    <Compile Include="Core\IRepositories\IApplicationUserRepository.cs" />
+    <Compile Include="Core\IRepositories\INotificationRepository.cs" />
+    <Compile Include="Core\IRepositories\IUserNotificationRepository.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="Persistence\EntityConfigurations\ApplicationUserConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\AttendanceConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\FollowingConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\GenreConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\NotificationConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\UserNotificationConfiguration.cs" />
+    <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\EntityConfigurations\GigConfiguration.cs" />
     <Compile Include="Persistence\Migrations\202005281948383_AddIsCanceledToGig.cs" />
     <Compile Include="Persistence\Migrations\202005281948383_AddIsCanceledToGig.Designer.cs">
@@ -247,6 +257,7 @@
       <DependentUpon>202005282041025_AddNotification.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Persistence\Repositories\NotificationRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Persistence\Repositories\AttendanceRepository.cs" />
     <Compile Include="Persistence\Repositories\FollowingRepository.cs" />
@@ -304,6 +315,7 @@
     <Compile Include="Core\Models\Genre.cs" />
     <Compile Include="Core\Models\Gig.cs" />
     <Compile Include="Core\ViewModels\ManageViewModels.cs" />
+    <Compile Include="Persistence\Repositories\UserNotificationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Core\ViewModels\FutureDate.cs" />

@@ -20,7 +20,6 @@ namespace GigCloud.Controllers
         {
             var gig = _unitOfWork.Gigs.GetGig(id);
 
-            
             if (gig == null)
                 return HttpNotFound();
 
