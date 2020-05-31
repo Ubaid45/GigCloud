@@ -41,5 +41,13 @@ namespace GigCloud.Tests.Controllers.Api
 
             result.Should().BeOfType<BadRequestErrorMessageResult>();
         }
+
+        [TestMethod]
+        public void Attend_ValidRequest_ShouldReturnOk()
+        {
+            var result = _controller.Attend(new AttendanceDto { GigId = 1 });
+
+            result.Should().BeOfType<OkResult>();
+        }
     }
 }
