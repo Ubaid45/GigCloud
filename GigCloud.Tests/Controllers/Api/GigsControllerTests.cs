@@ -2,6 +2,7 @@
 using GigCloud.Controllers.Api;
 using GigCloud.Core;
 using GigCloud.Core.IRepositories;
+using GigCloud.Core.Models;
 using GigCloud.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -33,5 +34,22 @@ namespace GigCloud.Tests.Controllers.Api
 
             result.Should().BeOfType<NotFoundResult>();
         }
+
+        [TestMethod]
+        public void Cancel_GigIsCanceled_ShouldReturnNotFound()
+        {
+            var gig = new Gig();
+            gig.Cancel();
+
+            _mockRepository.Setup(r => r.GetGigWithAttendees(1)).Returns(gig);
+
+            var result = _controller.Cancel(1);
+
+            result.Should().BeOfType<NotFoundResult>();
+        }
+
+
+
+
     }
 }
