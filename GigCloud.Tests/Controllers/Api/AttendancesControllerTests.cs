@@ -49,5 +49,13 @@ namespace GigCloud.Tests.Controllers.Api
 
             result.Should().BeOfType<OkResult>();
         }
+
+        [TestMethod]
+        public void DeleteAttendance_NoAttendanceWithGivenIdExists_ShouldReturnNotFound()
+        {
+            var result = _controller.DeleteAttendance(1);
+
+            result.Should().BeOfType<NotFoundResult>();
+        }
     }
 }
