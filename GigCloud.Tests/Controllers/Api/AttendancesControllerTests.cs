@@ -1,12 +1,17 @@
-﻿using GigCloud.Controllers.Api;
+﻿using FluentAssertions;
+using GigCloud.Controllers.Api;
 using GigCloud.Core;
+using GigCloud.Core.Dtos;
 using GigCloud.Core.IRepositories;
+using GigCloud.Core.Models;
 using GigCloud.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Web.Http.Results;
 
 namespace GigCloud.Tests.Controllers.Api
 {
+    [TestClass]
     public class AttendancesControllerTests
     {
         private AttendancesController _controller;
@@ -24,6 +29,17 @@ namespace GigCloud.Tests.Controllers.Api
             _controller = new AttendancesController(mockUoW.Object);
             _userId = "1";
             _controller.MockCurrentUser(_userId, "user1@domain.com");
+        }
+
+        [TestMethod]
+        public void Attend_UserAttendingAGigForWhichHeHasAnAttendance_ShouldReturnBadRequest()
+        {
+            var attendance = new Attendance();
+            _mockRepository.Setup(r => r.GetAttendance(1, _userId)).Returns(attendance);
+
+            var result = _controller.Attend(new AttendanceDto { GigId = 1 });
+
+            result.Should().BeOfType<BadRequestErrorMessageResult>();
         }
     }
 }
