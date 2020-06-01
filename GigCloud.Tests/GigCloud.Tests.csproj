@@ -86,6 +86,7 @@
     <Compile Include="Controllers\Api\AttendancesControllerTests.cs" />
     <Compile Include="Controllers\Api\GigsControllerTests.cs" />
     <Compile Include="Domain\Models\UnitTest1.cs" />
+    <Compile Include="Domain\Models\UnitTest2.cs" />
     <Compile Include="Extensions\ApiControllerExtensions.cs" />
     <Compile Include="Extensions\MockDbSetExtensions.cs" />
     <Compile Include="Persistence\Repositories\GigRepositoryTests.cs" />
