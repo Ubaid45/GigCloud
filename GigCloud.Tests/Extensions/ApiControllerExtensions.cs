@@ -4,7 +4,7 @@ using System.Web.Http;
 
 namespace GigCloud.Tests.Extensions
 {
-    public static class ApiControllerExtensions
+    public static partial class ApiControllerExtensions
     {
         public static void MockCurrentUser(this ApiController controller, string userId, string username)
         {
