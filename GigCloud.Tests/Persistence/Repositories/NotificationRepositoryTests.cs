@@ -6,6 +6,7 @@ using GigCloud.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Data.Entity;
+using System.Linq;
 
 namespace GigCloud.Tests.Persistence.Repositories
 {
@@ -55,6 +56,21 @@ namespace GigCloud.Tests.Persistence.Repositories
             var notifications = _repository.GetNewNotificationsFor(user.Id + "-");
 
             notifications.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void GetNewNotificationsFor_NewNotificationForTheGivenUser_ShouldBeReturned()
+        {
+            var notification = Notification.GigCanceled(new Gig());
+            var user = new ApplicationUser { Id = "1" };
+            var userNotification = new UserNotification(user, notification);
+
+            _mockNotifications.SetSource(new[] { userNotification });
+
+            var notifications = _repository.GetNewNotificationsFor(user.Id);
+
+            notifications.Should().HaveCount(1);
+            notifications.First().Should().Be(notification);
         }
     }
 }
