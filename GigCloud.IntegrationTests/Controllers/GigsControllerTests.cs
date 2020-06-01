@@ -1,6 +1,12 @@
-﻿using GigCloud.Controllers;
+﻿using FluentAssertions;
+using GigCloud.Controllers;
+using GigCloud.Core.Models;
+using GigCloud.IntegrationTests.Extensions;
 using GigCloud.Persistence;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GigCloud.IntegrationTests.Controllers
 {
@@ -21,6 +27,26 @@ namespace GigCloud.IntegrationTests.Controllers
         public void TearDown()
         {
             _context.Dispose();
+        }
+
+
+        [Test, Isolated]
+        public void Mine_WhenCalled_ShouldReturnUpcomingGigs()
+        {
+            // Arrange
+            var user = _context.Users.First();
+            _controller.MockCurrentUser(user.Id, user.UserName);
+
+            var genre = _context.Genres.First();
+            var gig = new Gig { Artist = user, DateTime = DateTime.Now.AddDays(1), Genre = genre, Venue = "-" };
+            _context.Gigs.Add(gig);
+            _context.SaveChanges();
+
+            // Act
+            var result = _controller.Mine();
+
+            // Assert
+            (result.ViewData.Model as IEnumerable<Gig>).Should().HaveCount(1);
         }
     }
 }
