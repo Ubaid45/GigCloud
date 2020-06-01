@@ -1,11 +1,11 @@
-﻿using GigCloud.Core.Models;
+﻿using FluentAssertions;
+using GigCloud.Core.Models;
 using GigCloud.Persistence;
 using GigCloud.Persistence.Repositories;
+using GigCloud.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Data.Entity;
-using FluentAssertions;
-using GigCloud.Tests.Extensions;
 
 namespace GigCloud.Tests.Persistence.Repositories
 {
@@ -39,6 +39,20 @@ namespace GigCloud.Tests.Persistence.Repositories
             _mockNotifications.SetSource(new[] { userNotification });
 
             var notifications = _repository.GetNewNotificationsFor(user.Id);
+
+            notifications.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void GetNewNotificationsFor_NotificationIsForADifferentUser_ShouldNotBeReturned()
+        {
+            var notification = Notification.GigCanceled(new Gig());
+            var user = new ApplicationUser { Id = "1" };
+            var userNotification = new UserNotification(user, notification);
+
+            _mockNotifications.SetSource(new[] { userNotification });
+
+            var notifications = _repository.GetNewNotificationsFor(user.Id + "-");
 
             notifications.Should().BeEmpty();
         }
