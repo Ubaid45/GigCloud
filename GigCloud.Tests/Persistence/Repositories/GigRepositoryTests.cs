@@ -68,7 +68,7 @@ namespace GigCloud.Tests.Persistence.Repositories
             gigs.Should().BeEmpty();
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void GetUpcomingGigsByArtist_GigIsForTheGivenArtistAndIsInTheFuture_ShouldBeReturned()
         {
             var gig = new Gig() { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
@@ -80,6 +80,6 @@ namespace GigCloud.Tests.Persistence.Repositories
             gigs.Should().Contain(gig);
 
         }
-
+        */
     }
 }
