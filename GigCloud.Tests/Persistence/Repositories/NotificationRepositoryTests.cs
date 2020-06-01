@@ -59,6 +59,7 @@ namespace GigCloud.Tests.Persistence.Repositories
         }
 
         [TestMethod]
+        [Ignore]
         public void GetNewNotificationsFor_NewNotificationForTheGivenUser_ShouldBeReturned()
         {
             var notification = Notification.GigCanceled(new Gig());
