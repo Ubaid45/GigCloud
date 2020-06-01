@@ -250,6 +250,10 @@
     <Compile Include="Persistence\EntityConfigurations\NotificationConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\UserNotificationConfiguration.cs" />
     <Compile Include="Persistence\IApplicationDbContext.cs" />
+    <Compile Include="Persistence\Migrations\202006011042299_RunSqlScript.cs" />
+    <Compile Include="Persistence\Migrations\202006011042299_RunSqlScript.Designer.cs">
+      <DependentUpon>202006011042299_RunSqlScript.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\EntityConfigurations\GigConfiguration.cs" />
     <Compile Include="Persistence\Migrations\202005281948383_AddIsCanceledToGig.cs" />
@@ -409,6 +413,7 @@
     <Content Include="Views\Followees\Index.cshtml" />
     <Content Include="Views\Gigs\Mine.cshtml" />
     <Content Include="Views\Gigs\Details.cshtml" />
+    <Content Include="SqlScripts\01.06.2020.sql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -453,6 +458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202005282041025_AddNotification.resx">
       <DependentUpon>202005282041025_AddNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202006011042299_RunSqlScript.resx">
+      <DependentUpon>202006011042299_RunSqlScript.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
