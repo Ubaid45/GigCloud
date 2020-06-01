@@ -56,5 +56,30 @@ namespace GigCloud.Tests.Persistence.Repositories
 
         }
 
+        [TestMethod]
+        public void GetUpcomingGigsByArtist_GigIsForADifferentArtist_ShouldNotBeReturned()
+        {
+            var gig = new Gig() { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
+
+            _mockGigs.SetSource(new[] { gig });
+
+            var gigs = _repository.GetUpcomingGigsByArtist(gig.ArtistId + "-");
+
+            gigs.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void GetUpcomingGigsByArtist_GigIsForTheGivenArtistAndIsInTheFuture_ShouldBeReturned()
+        {
+            var gig = new Gig() { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
+
+            _mockGigs.SetSource(new[] { gig });
+
+            var gigs = _repository.GetUpcomingGigsByArtist(gig.ArtistId);
+
+            gigs.Should().Contain(gig);
+
+        }
+
     }
 }
