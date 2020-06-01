@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GigCloud", "GigCloud\GigClo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GigCloud.Tests", "GigCloud.Tests\GigCloud.Tests.csproj", "{07FEF644-5A87-469D-8277-D85FCFD61AC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GigCloud.IntegrationTests", "GigCloud.IntegrationTests\GigCloud.IntegrationTests.csproj", "{CC009A5B-ADDE-4CEA-A205-E3E5FD849C96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,12 +23,16 @@ Global
 		{07FEF644-5A87-469D-8277-D85FCFD61AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07FEF644-5A87-469D-8277-D85FCFD61AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07FEF644-5A87-469D-8277-D85FCFD61AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC009A5B-ADDE-4CEA-A205-E3E5FD849C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC009A5B-ADDE-4CEA-A205-E3E5FD849C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC009A5B-ADDE-4CEA-A205-E3E5FD849C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC009A5B-ADDE-4CEA-A205-E3E5FD849C96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		LessCompiler = 1e546f15-c375-4d0a-a34c-0070a303aa2e
 		SolutionGuid = {34D200F8-A3E0-40A4-9620-7A89D65E26D8}
+		LessCompiler = 1e546f15-c375-4d0a-a34c-0070a303aa2e
 	EndGlobalSection
 EndGlobal
