@@ -33,9 +33,9 @@ namespace GigCloud.Tests.Persistence.Repositories
         [TestMethod]
         public void GetUpcomingGigsByArtist_GigIsInThePast_ShouldNotBeReturned()
         {
-            var gig = new Gig() { DateTime = DateTime.Now.AddDays(-1), ArtistId = "1" };
+            var gig = new Gig() {DateTime = DateTime.Now.AddDays(-1), ArtistId = "1"};
 
-            _mockGigs.SetSource(new[] { gig });
+            _mockGigs.SetSource(new[] {gig});
 
             var gigs = _repository.GetUpcomingGigsByArtist("1");
 
@@ -45,10 +45,10 @@ namespace GigCloud.Tests.Persistence.Repositories
         [TestMethod]
         public void GetUpcomingGigsByArtist_GigIsCanceled_ShouldNotBeReturned()
         {
-            var gig = new Gig() { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
+            var gig = new Gig() {DateTime = DateTime.Now.AddDays(1), ArtistId = "1"};
             gig.Cancel();
 
-            _mockGigs.SetSource(new[] { gig });
+            _mockGigs.SetSource(new[] {gig});
 
             var gigs = _repository.GetUpcomingGigsByArtist("1");
 
@@ -59,27 +59,41 @@ namespace GigCloud.Tests.Persistence.Repositories
         [TestMethod]
         public void GetUpcomingGigsByArtist_GigIsForADifferentArtist_ShouldNotBeReturned()
         {
-            var gig = new Gig() { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
+            var gig = new Gig() {DateTime = DateTime.Now.AddDays(1), ArtistId = "1"};
 
-            _mockGigs.SetSource(new[] { gig });
+            _mockGigs.SetSource(new[] {gig});
 
             var gigs = _repository.GetUpcomingGigsByArtist(gig.ArtistId + "-");
 
             gigs.Should().BeEmpty();
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void GetUpcomingGigsByArtist_GigIsForTheGivenArtistAndIsInTheFuture_ShouldBeReturned()
         {
-            var gig = new Gig() { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
+            var gig = new Gig() {DateTime = DateTime.Now.AddDays(1), ArtistId = "1"};
 
-            _mockGigs.SetSource(new[] { gig });
+            _mockGigs.SetSource(new[] {gig});
 
             var gigs = _repository.GetUpcomingGigsByArtist(gig.ArtistId);
 
             gigs.Should().Contain(gig);
 
         }
-        */
+
+        // This test helped me catch a bug in GetGigsUserAttending() method. 
+        // It used to return gigs from the past. 
+        [TestMethod]
+        public void GetGigsUserAttending_GigIsInThePast_ShouldNotBeReturned()
+        {
+            var gig = new Gig() {DateTime = DateTime.Now.AddDays(-1)};
+            var attendance = new Attendance {Gig = gig, AttendeeId = "1"};
+
+            _mockAttendances.SetSource(new[] {attendance});
+
+            var gigs = _repository.GetGigsUserAttending(attendance.AttendeeId);
+
+            gigs.Should().BeEmpty();
+        }
     }
 }
