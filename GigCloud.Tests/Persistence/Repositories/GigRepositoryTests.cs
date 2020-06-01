@@ -95,5 +95,18 @@ namespace GigCloud.Tests.Persistence.Repositories
 
             gigs.Should().BeEmpty();
         }
+
+        [TestMethod]
+        public void GetGigsUserAttending_AttendanceForADifferentUser_ShouldNotBeReturned()
+        {
+            var gig = new Gig() { DateTime = DateTime.Now.AddDays(1) };
+            var attendance = new Attendance { Gig = gig, AttendeeId = "1" };
+
+            _mockAttendances.SetSource(new[] { attendance });
+
+            var gigs = _repository.GetGigsUserAttending(attendance.AttendeeId + "-");
+
+            gigs.Should().BeEmpty();
+        }
     }
 }
