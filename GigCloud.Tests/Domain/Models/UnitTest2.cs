@@ -26,6 +26,18 @@ namespace GigCloud.Tests.Domain.Models
             gig.IsCanceled.Should().BeTrue();
         }
 
-       
+        [TestMethod]
+        public void Cancel_WhenCalled_EachAttendeeShouldHaveANotification()
+        {
+            var gig = new Gig();
+            gig.Attendances.Add(new Attendance { Attendee = new ApplicationUser { Id = "1" } });
+
+            gig.Cancel();
+
+            //TODO: This could be pushed into the Gig class (eg gig.GetAttendees())
+            var attendees = gig.Attendances.Select(a => a.Attendee).ToList();
+            attendees[0].UserNotifications.Count.Should().Be(1);
+        }
+
     }
 }
